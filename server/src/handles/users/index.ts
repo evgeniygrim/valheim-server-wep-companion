@@ -1,7 +1,7 @@
 import { UserListQuery, User } from "../../types/users/index";
 import { Request, Response } from "express";
 import {getParams, getBody, getQuery} from '../../utils/request';
-import UserService from "../../services/users";
+const UserService: any = {};
 
 const getAll = async (req: Request, res: Response) => {
   const params = getQuery<UserListQuery>(req);
