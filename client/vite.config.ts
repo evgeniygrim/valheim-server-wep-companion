@@ -38,6 +38,11 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
           changeOrigin: true,
           secure: false,
         },
+        '/supervisor': {
+          target: 'http://95.163.12.113',
+          changeOrigin: true,
+          secure: false,
+        }
       }
     },
     build: {

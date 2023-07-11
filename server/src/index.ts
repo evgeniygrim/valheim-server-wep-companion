@@ -3,6 +3,7 @@ import routes from './routes'
 import bodyParser from 'body-parser';
 import path from 'path';
 import dotenv from 'dotenv';
+import {pathResolve} from './utils/resolve';
 
 dotenv.config({
   path: process.env.NODE_ENV === 'production' ? '.env' : '.env.dev'
@@ -10,16 +11,18 @@ dotenv.config({
 
 const app = express();
 const port = process.env.PORT || 3000;
-// const dbUrl = process.env.DB_URL;
 
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-  if (!req.originalUrl.startsWith('/api')) {
-    const indexPath = path.resolve(__dirname, '../public', 'index.html');
-
-    console.warn('index is : ', indexPath)
-    res.sendFile(indexPath);
+  const requestPath = req.originalUrl;
+  if (!requestPath.startsWith('/api')) {
+    const publicPath = pathResolve('../public');
+    const index = publicPath + '/index.html';
+    const assets = publicPath + requestPath;
+  
+    const resolve = (requestPath == '/') ? index : assets;
+    res.sendFile(resolve);
   } else {
     next();
   }
@@ -27,6 +30,6 @@ app.use((req, res, next) => {
 
 app.use('/api', routes);
 
-app.listen(port, () => {
+app.listen(port,  () => {
   console.log(`Сервер запущен на порту ${port}`);
 });

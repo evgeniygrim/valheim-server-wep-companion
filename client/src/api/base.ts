@@ -17,9 +17,9 @@ export function requestPayload(method: Method, data: any) {
   }
 }
 
-export function createAxios<T = any>(axiosConfig: AxiosRequestConfig): Promise<any> {
+export function createAxios<T = any>(axiosConfig: AxiosRequestConfig, external? : string): Promise<any> {
   const Axios = axios.create({
-    baseURL: getUrl(),
+    baseURL: external || getUrl(),
     timeout: 1000 * 10,
     headers: {
       server: true,
