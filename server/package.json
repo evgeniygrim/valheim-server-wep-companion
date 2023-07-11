@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "start": "npm run dev",
-    "serve": "node ./dist/index.js",
-    "build": "npx tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "start": "NODE_ENV=production node ./dist/index.js",
+    "dev": "NODE_ENV=development concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "build": "npx tsc"
   },
   "dependencies": {
     "@fractalsoftware/random-avatar-generator": "^1.0.11",
@@ -17,6 +16,7 @@
     "@types/node": "^20.3.3",
     "@types/uuid": "^9.0.2",
     "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1",
     "nodemon": "^2.0.22",
     "typescript": "^5.1.6"
   }

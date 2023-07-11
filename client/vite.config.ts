@@ -43,7 +43,7 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
     build: {
       cssCodeSplit: false,
       sourcemap: false,
-      outDir: '../public',
+      outDir: '../server/public',
       emptyOutDir: true,
       chunkSizeWarningLimit: 1500,
       rollupOptions: {

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "start": "npm run dev"
   },
@@ -23,9 +23,11 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/types": "^7.22.5",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.18",
     "@vitejs/plugin-vue": "^4.1.0",
+    "echarts": "^5.4.2",
     "sass": "^1.57.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
