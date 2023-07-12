@@ -40,7 +40,6 @@ class GameServerService {
     this.containerName = config.container || "";
 
     this.watcher = this.watchContainer();
-    this.getModPack().then((res) => console.log("res :: ", res));
   }
 
   public async getModsList() {
