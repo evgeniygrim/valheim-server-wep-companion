@@ -21,6 +21,7 @@ import { defineComponent, h } from 'vue'
 import { ServerStates } from '/@/types/game'
 import { useGameStatus } from '/@/stores/game-status'
 import { ElDivider } from 'element-plus'
+import { copyToClipboard } from '/@/utils/clipboadr'
 import router from '/@/router'
 
 
@@ -57,7 +58,7 @@ export default defineComponent({
   },
   methods: {
     copyPath() {
-      navigator.clipboard.writeText(`${location.hostname}:${this.server.port}`);
+      copyToClipboard(`${location.hostname}:${this.server.port}`);
     }
   }
 })
