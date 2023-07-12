@@ -32,7 +32,6 @@ export default function getDllVersion(dll: string, modspath: string) {
         const originName = dll?.replaceAll(".dll", "")
         const name = originName
           .replaceAll("_", " ")
-          .replace(/([a-z])([A-Z])/g, '$1 $2')
 
         const info = {
           dll,

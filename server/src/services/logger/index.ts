@@ -29,9 +29,9 @@ class LoggerService {
     const buffer = `${time} | as user: ${user || 'Server'} [ ${type || 'OK'}${ codeString } ] ${message}`
     this.write(buffer);
     if (code && code > 200) {
-      console.error(buffer, data || '', '\n')
+      console.error(buffer, '\n', data || '', '\n')
     } else {
-      console.log(buffer, data || '', '\n')
+      console.log(buffer, '\n', data || '', '\n')
     }
   }
 

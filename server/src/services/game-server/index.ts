@@ -3,7 +3,7 @@ import {
   ServerStates,
   DockerContainerStates,
   ServerStatus,
-} from "../../types/server-state/index";
+} from "../../types/game-server/index";
 import os from "os";
 import path from "path";
 import { AppConfig } from "../../types/config";
