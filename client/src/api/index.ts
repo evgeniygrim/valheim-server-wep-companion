@@ -1,6 +1,7 @@
 import * as UserApi from './users';
-import * as SupervisorApi from './supervisor';
+import * as GameApi from './game';
+
 export {
   UserApi,
-  SupervisorApi
+  GameApi,
 }

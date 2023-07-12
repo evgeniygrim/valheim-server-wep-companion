@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, Method } from "axios";
 import { config } from "process";
 
 export const getUrl = (): string => {
-  return window.location.protocol + '//' + window.location.host;
+  return window.location.protocol + '//' + window.location.host + '/api';
 }
 
 export function requestPayload(method: Method, data: any) {

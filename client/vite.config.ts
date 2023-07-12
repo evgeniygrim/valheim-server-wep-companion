@@ -38,11 +38,6 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
           changeOrigin: true,
           secure: false,
         },
-        '/supervisor': {
-          target: 'http://95.163.12.113',
-          changeOrigin: true,
-          secure: false,
-        }
       }
     },
     build: {
@@ -54,13 +49,18 @@ const viteConfig = ({ mode }: ConfigEnv): UserConfig => {
       rollupOptions: {
         output: {
           manualChunks: {
-            vue: ['vue', 'vue-router', 'pinia'],
+            vue: ['vue', 'vue-router', 'pinia', 'vue-i18n', 'element-plus'],
             echarts: ['echarts'],
           },
         },
       },
     },
     css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "/@/styles/element/index.scss" as *;`,
+        },
+      },
       postcss: {
         plugins: [
           {

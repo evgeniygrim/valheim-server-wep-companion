@@ -1,11 +1,18 @@
 import { RouteRecordRaw } from "vue-router";
-import Main from "/@/layouts/main.vue";
+import Main from "/@/layouts/main/index.vue";
 import NotFound from "/@/views/common/404.vue";
+import Home from '/@/views/home/index.vue';
+
 export default [
   {
-    path: "/",
+    path: '/',
     component: Main,
-    children: [],
+    children: [
+      {
+        path: '/',
+        component: Home
+      }
+    ],
   },
   { path: "/:pathMatch(.*)*", component: NotFound },
 ] as Array<RouteRecordRaw>;
