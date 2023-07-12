@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+      "declaration": false,
       "target": "esnext",
       "useDefineForClassFields": true,
       "module": "esnext",
@@ -10,6 +11,7 @@
       "sourceMap": false,
       "resolveJsonModule": true,
       "esModuleInterop": true,
+      "skipDefaultLibCheck": true,
       "lib": ["esnext", "dom"],
       "types": ["element-plus/global"],
       "baseUrl": "./",

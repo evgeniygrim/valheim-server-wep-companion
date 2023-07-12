@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build && esno ./src/utils/build.ts",
     "preview": "vite preview",
     "start": "npm run dev"
   },
@@ -16,11 +16,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.4.0",
-    "element-plus": "^2.3.7",
+    "element-plus": "^2.2.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "path": "^0.12.7",
     "pinia": "^2.1.4",
     "vue": "^3.2.47",
+    "vue-i18n": "~9.2.2",
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
@@ -29,7 +31,9 @@
     "@types/node": "^18.11.18",
     "@vitejs/plugin-vue": "^4.1.0",
     "echarts": "^5.4.2",
+    "esno": "^0.16.3",
     "sass": "^1.63.6",
+    "type-fest": "^3.13.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vue-tsc": "^1.4.2"

@@ -11,7 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
-publuc/*
+./publuc/*
+./public
+*/public
+publuc
 
 # Editor directories and files
 .vscode/*
