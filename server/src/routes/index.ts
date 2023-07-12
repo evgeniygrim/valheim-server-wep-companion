@@ -1,15 +1,13 @@
-// import router, {default as users} from './users';
 import { Router } from 'express'
+import status from './status'
+import mods from './mods'
 
 const router = Router()
-// router.use('/api/users', users);
+router.use('/api/status', status);
+router.use('/api/mods', mods);
 
-// router.get('/api', (req, res) => {
-//   res.status(404).json({ message: 'no found' });
-// });
-
-router.get('/', (reg, res) => {
-  res.status(200).json({message: 'api request'})
+router.get('/api', (reg, res) => {
+  res.status(404).json('Api undefined')
 })
 
 export default router;

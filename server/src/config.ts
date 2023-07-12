@@ -1,19 +1,18 @@
 import dotenv from 'dotenv';
-dotenv.config()
-import packageJson from '../package.json';
+import {AppConfig} from './types/config';
+import path from 'path';
 
-const config = {
-    version: packageJson.version,
-    name: packageJson.name,
-    description: packageJson.description,
+dotenv.config({
+    path: '.env'
+})
 
+const config: AppConfig = {
     nodeEnv: process.env['NODE_ENV'] ?? 'development',
-    port: process.env['PORT'] ?? 3000,
-    
-    clientOrigins: {
-        'development': process.env['DEV_ORIGIN'] ?? '*',
-        'production': process.env['PROD_ORIGIN'] ?? 'none'
-    }
+    port: process.env['NODE_ENV'] == 'production' ? process.env['PORT'] as string | number : 3000,
+    state: process.env.SERVER_STATE || '/grimheim/data/htdocs/status.json',
+    mods: process.env.SERVER_MODS || '/grimheim/config/bepinex/plugins',
+    container:  process.env.SERVER_CONTAINER || '/grimheim-valheim-1',
+    rootDir: path.resolve(__dirname, '..')
 }
 
 export default config

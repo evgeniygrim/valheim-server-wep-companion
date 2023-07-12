@@ -1,15 +1,7 @@
 import express from 'express';
 import routes from './routes'
 import bodyParser from 'body-parser';
-import path from 'path';
-import dotenv from 'dotenv';
 import {pathResolve} from './utils/resolve';
-import ServerStateService from './services/server-state'
-
-const isProd = process.env.NODE_ENV === 'production';
-dotenv.config({
-  path: '.env', 
-});
 
 const app = express();
 app.use(bodyParser.json())
@@ -27,8 +19,6 @@ app.use((req, res, next) => {
     next();
   }
 });
-
-ServerStateService.serverContainer
 
 app.use('/api', routes);
 
