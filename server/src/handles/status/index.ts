@@ -7,10 +7,10 @@ export default {
   get: async (reg: Request, res: Response) => {
     try {
       const status = await GameServerService.getStatusServer();
-      res.sendStatus(200).json(status);
+      res.status(200).json(status);
     } catch {
       const error = new ServerError('Server status unavailable', 500, 'Game Server');
-      res.sendStatus(500).send(error.message);
+      res.status(500).send(error.message);
     }
   }
 }

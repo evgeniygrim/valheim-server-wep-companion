@@ -3,28 +3,35 @@ import { AppConfig } from "../../types/config";
 import { exec } from "child_process";
 import { default as fsAsync } from "fs/promises";
 
-const appLogCredits = `
-  # app.log
-
+const appLogCredits = 
+`# =============
+# app.log
+# =============
 
 `
 
 class LoggerService {
+  declare private inited: boolean;
   declare logPath: string;
   private buffer: string = '';
 
   init(config: AppConfig) {
+    if (this.inited) {
+      return false;
+    }
     this.logPath = path.resolve(config.rootDir + '/logs/app.log');
+    this.inited = true;
   }
 
-  log(message: string, type?: string, code?: number, user?: string) {
+  log(message: string, type?: string, code?: number, user?: string, data?: any) {
     const time = new Date().toISOString();
-    const buffer = `${time} | user: ${user || 'Server'} [ ${type || 'OK'} ${code ? '' : ' : ' + code } ] :: ${message}`
+    const codeString = code == 0 || Boolean(code) ?  ' : ' + code : '';
+    const buffer = `${time} | as user: ${user || 'Server'} [ ${type || 'OK'}${ codeString } ] ${message}`
     this.write(buffer);
     if (code && code > 200) {
-      console.error(buffer)
+      console.error(buffer, data || '', '\n')
     } else {
-      console.log(buffer)
+      console.log(buffer, data || '', '\n')
     }
   }
 
@@ -33,9 +40,8 @@ class LoggerService {
       if (!await this.access()) {
         await this.create();
       }
-      exec(`echo -e "${buffer}\n" >> ${this.logPath}`)
+      exec(`echo "${buffer}\n" >> ${this.logPath}`)
       
-
     } catch {
       this.buffer = this.buffer + '\n' + buffer;
     }

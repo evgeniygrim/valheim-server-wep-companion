@@ -1,4 +1,3 @@
-import { update } from '../../../../client/src/api/users';
 import Docker from "dockerode";
 import {
   ServerStates,
@@ -13,8 +12,11 @@ import { default as getDllInfo, DLLInfoInterface } from "../../utils/dll";
 import { default as createZip, ModPackInterface} from '../../utils/mod-pack';
 import {DataCache} from '../../utils/cache';
 import {getSeconds} from '../../utils/time';
+import logger from "../logger";
+import LoggerService from '../logger';
 
 class GameServerService {
+  declare private inited: boolean;
   declare docker: Docker;
   declare _serverContainer: Docker.ContainerInfo;
   declare modsPath: string;
@@ -23,8 +25,8 @@ class GameServerService {
   declare watcher: NodeJS.Timer;
 
   private status: DataCache<ServerStatus> = new DataCache<ServerStatus>({ state: ServerStates.OFFLINE }, getSeconds(15));
-  private modPack: DataCache<ModPackInterface> = new DataCache<ModPackInterface>({} as any, getSeconds(10));
-  private modList: DataCache<DLLInfoInterface[]> = new DataCache<DLLInfoInterface[]>([] as any[], getSeconds(10));
+  private modPack: DataCache<ModPackInterface> = new DataCache<ModPackInterface>(null as any, getSeconds(10));
+  private modList: DataCache<DLLInfoInterface[]> = new DataCache<DLLInfoInterface[]>(null as any, getSeconds(10));
 
   public get serverContainer() {
     return this._serverContainer || undefined;
@@ -35,11 +37,26 @@ class GameServerService {
   }
 
   init(config: AppConfig) {
+    if (this.inited) {
+      return false;
+    }
+
     this.modsPath = path.resolve(os.homedir() + config.mods);
     this.statusPath = path.resolve(os.homedir() + config.state);
     this.containerName = config.container || "";
+    this.getModsList().then(() => {
+      const data = this.modList.entry.map((item) => `${item.dll} :: ${item.version}`)
+      LoggerService.log(`Mods List Loaded`, 'Inited', undefined, 'GameServerService', data)
+    });
+
+    this.getModPack().then(() => {
+      const data = this.modPack.entry
+      LoggerService.log(`Mods Pack Loaded`, 'Inited', undefined, 'GameServerService', data)
+    });
 
     this.watcher = this.watchContainer();
+    this.inited = true;
+    LoggerService.log(`Done`, 'Inited', undefined, 'GameServerService')
   }
 
   public async getModsList() {
@@ -54,8 +71,9 @@ class GameServerService {
 
   public async getModPack() {
     try {
-      const list = await this.getModsList();
-      return this.modPack.update(async () => await createZip(list.map(item => item.dll), this.modsPath));
+      const files = new Set(await fsAsync.readdir(this.modsPath));
+      const list = Array.from(files);
+      return this.modPack.update(async () => await createZip(list, this.modsPath));
     } catch (err) {
 
     }

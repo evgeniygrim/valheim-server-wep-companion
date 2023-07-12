@@ -1,16 +1,19 @@
+import { getSeconds } from "./time";
+
 export interface DataCacheInterface<T> {
   entry: T,
   stamp: Date,
 }
 
 export class DataCache<T = any> implements DataCacheInterface<T> {
+  declare timeLimit: number;
+  
   public get entry() {
     return this.data.entry;
   }
   public get stamp() {
     return this.data.stamp;
   }
-  public timeLimit = 1000 * 5;
 
   private data: DataCacheInterface<T> = {
     entry: null as T,
@@ -18,9 +21,9 @@ export class DataCache<T = any> implements DataCacheInterface<T> {
   }
 
   constructor (entity: T, timeLimit: number) {
-    this.timeLimit = timeLimit;
+    this.timeLimit = timeLimit || getSeconds(10);
     this.data.entry = entity;
-    this.data.stamp = new Date();
+    this.data.stamp = entity ? new Date() : new Date(0);
   }
 
   public get() {
@@ -38,8 +41,9 @@ export class DataCache<T = any> implements DataCacheInterface<T> {
 
   static checkStamp(stamp: Date, limit: number) {
     const now = new Date().getTime();
-
-    return ((stamp.getTime() - now) < limit)
+    const old = stamp.getTime();
+    const delta = (now - old);
+    return (delta < limit)
   }
 
   private _update(entity: T) {
