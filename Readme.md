@@ -1,5 +1,5 @@
 ### Description
-Web application for monitoring the state of personal Valheim server.
+Web application for monitoring the state of private Valheim server.
 
 The implication is to check the server state from the docker contenter.
 
