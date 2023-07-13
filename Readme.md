@@ -3,7 +3,8 @@ Web application for monitoring the state of personal Valheim server.
 
 The implication is to check the server state from the docker contenter.
 
-docker image is: https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
+#### Docker Image 
+https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
 
 mono-utils_4.2.1 or higher is required to check versions of active mods.
 
@@ -24,7 +25,8 @@ application will be deployed on port 80.
 
 Подразумевается проверка состояния сервера из docker контейнера.
 
-Образ docker: https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
+#### Образ docker
+https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
 
 Для проверки версий активных модов требуется mono-utils_4.2.1 или выше.
 
