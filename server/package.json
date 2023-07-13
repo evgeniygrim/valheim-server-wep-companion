@@ -1,6 +1,6 @@
 {
-  "version": "1",
-  "name": "grimheim-web",
+  "version": "1.0.0",
+  "name": "grimheim-web server",
   "description": "Web App to game server",
   "scripts": {
     "start": "NODE_ENV=production node ./dist/index.js",
