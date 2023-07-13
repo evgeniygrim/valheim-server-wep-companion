@@ -6,19 +6,10 @@
 
 для проверки версий активных модов необходим mono-utils_4.2.1 или выше.
 
-установка:
+Установка:
 
 ```bash
-
-cd ./client
-npm ci
-npm run build
-
-cd ../server
-npm ci
-num run build
-
-pm2 start app.config.js --env production 
+./deploy.sh
 ```
 
 приложение развернется на 80 порту.
