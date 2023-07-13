@@ -22,7 +22,7 @@ application will be deployed on port 80.
 ### Описание
 Веб-приложение для мониторинга состояния персонального сервера Valheim.
 
-Подразумевается проверка состояния сервера из docker contenter.
+Подразумевается проверка состояния сервера из docker контейнера.
 
 Образ docker: https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
 
