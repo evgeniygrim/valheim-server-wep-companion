@@ -1,5 +1,5 @@
 ### Dependencies
-- linux (deb)
+- linux ([e.g Ubuntu](https://ubuntu.com/))
 - [Docker compose](https://www.docker.com/)
 - [mono-utils](https://manpages.ubuntu.com/manpages/xenial/man1/monodis.1.html)
 - [NodeJS](https://nodejs.org/)
