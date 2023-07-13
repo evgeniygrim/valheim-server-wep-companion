@@ -1,12 +1,14 @@
+### Dependencies
+- linux (deb)
+- docker compose
+- nodejs
+- mono-utils_4.2.1
+
 ### Description
 Web application for monitoring the state of private Valheim server.
 
-The implication is to check the server state from the docker contenter.
-
-#### Docker Image 
+#### Docker Image for Valheim Server
 https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
-
-mono-utils_4.2.1 or higher is required to check versions of active mods.
 
 Installation:
 
@@ -25,13 +27,8 @@ application will be deployed on port 80.
 ### Описание
 Веб-приложение для мониторинга состояния персонального сервера Valheim.
 
-Подразумевается проверка состояния сервера из docker контейнера.
-
-#### Образ docker
+#### Образ docker для Valheim Server
 https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
-
-Для проверки версий активных модов требуется mono-utils_4.2.1 или выше.
-
 Установка:
 
 ```bash.
