@@ -9,10 +9,21 @@ Green='\033[0;32m'        # Green
 Yellow='\033[0;33m'       # Yellow
 Cyan='\033[0;36m'         # Cyan
 
+
+echo -e "$Cyan You can use a special flags to deploy: $Color_Off";
+echo -e "   -s : for the deployment server only";
+echo -e "   -c : for the deployment clien only";
+
 client=0
 server=0
 
 dir=($PWD)
+if (( $# == 0 )); then
+  client=1
+  server=1
+  echo -e "$Color_Off";
+  echo -e "$Cyan [ Deploy App ] ";
+fi
 # Check client flag
 if echo -e $* | grep -e "-c" -q 
   then
@@ -32,19 +43,17 @@ if [ $client -eq 1 ]
 then
   cd "$dir/client"
   echo -e "$Color_Off";
-  echo -e "$Yellow============= [ Start client ] =============";
+  echo -e "$Yellow============= [ Start client ] =============$Color_Off";
   echo -e "$Color_Off";
-  echo -e "path: $PWD"
+  echo -e "$Yellow client path is: $Color_Off $PWD"
   echo -e "$Color_Off";
-  echo -e "$Yellow========= [ install node_modules ] =========";
-  echo -e "$Color_Off";
+  echo -e "$Yellow========= [ install node_modules ] =========$Color_Off";
   npm ci
   echo -e "$Color_Off";
-  echo -e "$Yellow============= [ Build client ] =============";
-  echo -e "$Color_Off";
+  echo -e "$Yellow============= [ Build client ] =============$Color_Off";
   npm run build
   echo -e "$Color_Off";
-  echo -e "$Green========= [ Build client success ] =========";
+  echo -e "$Green========= [ Build client success ] =========$Color_Off";
   echo -e "$Color_Off";
 fi
 # Run server build
@@ -52,34 +61,32 @@ if [ $server -eq 1 ]
 then 
   cd "$dir/server"
   echo -e "$Color_Off";
-  echo -e "$Yellow============= [ Start server ] =============" ; 
+  echo -e "$Yellow============= [ Start server ] =============$Color_Off" ; 
   echo -e "$Color_Off";
-  echo -e "path: $PWD"
+  echo -e "$Yellow server path is: $Color_Off $PWD"
   echo -e "$Color_Off";
-  echo -e "$Yellow========= [ install node_modules ] =========";
-  echo -e "$Color_Off";
+  echo -e "$Yellow========= [ install node_modules ] =========$Color_Off";
   npm ci
-  echo -e "$Yellow============= [ Build server ] =============";
   echo -e "$Color_Off";
+  echo -e "$Yellow============= [ Build server ] =============$Color_Off";
   npm run build
+  echo -e "$Green========= [ Build client success ] =========$Color_Off";
   echo -e "$Color_Off";
-  echo -e "$Green========= [ Build client success ] =========";
-  echo -e "$Color_Off";
-  echo -e "$Yellow========= [ Run instance server ] ==========";
+  echo -e "$Yellow========= [ Run instance server ] ==========$Color_Off";
   echo -e "$Color_Off";
   pm2 restart app.config.js --env production
 fi
 #Show result
 if [ "$client" -eq 1 ] && [ "$server" -eq 1 ]; then
   echo -e "$Color_Off";
-  echo -e "$Green [ Rebuild App success ] ";
+  echo -e "$Green [ Deploy App success ] ";
   echo -e "$Color_Off";
 elif [ "$client" -eq 1 ]; then
   echo -e "$Color_Off";
-  echo -e "$Green [ Rebuild client only success ] ";
+  echo -e "$Green [ Deploy client only success ] ";
   echo -e "$Color_Off";
 elif [ "$server" -eq 1 ]; then
   echo -e "$Color_Off";
-  echo -e "$Green [ Rebuild server only success ] ";
+  echo -e "$Green [ Deploy server only success ] ";
   echo -e "$Color_Off";
 fi
