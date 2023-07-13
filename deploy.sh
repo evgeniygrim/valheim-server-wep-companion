@@ -9,21 +9,21 @@ Green='\033[0;32m'        # Green
 Yellow='\033[0;33m'       # Yellow
 Cyan='\033[0;36m'         # Cyan
 
-client=1
-server=1
+client=0
+server=0
 
 dir=($PWD)
 # Check client flag
 if echo -e $* | grep -e "-c" -q 
   then
-    server=0
+    client=1
     echo -e "$Color_Off";
     echo -e "$Cyan [ Rebuild client only ] ";
 fi
 # Check server flag
 if echo -e $* | grep -e "-s" -q 
   then
-    client=0
+    server=1
     echo -e "$Color_Off";
     echo -e "$Cyan [ Rebuild server only ] ";
 fi
