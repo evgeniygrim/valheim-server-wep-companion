@@ -9,10 +9,11 @@ Green='\033[0;32m'        # Green
 Yellow='\033[0;33m'       # Yellow
 Cyan='\033[0;36m'         # Cyan
 
-
-echo -e "$Cyan You can use a special flags to deploy: $Color_Off";
-echo -e "   -s : for the deployment server only";
-echo -e "   -c : for the deployment clien only";
+# Welcome Message
+echo -e "$Color_Off";
+echo -e "$Cyan Special flags can be used for deployment: $Color_Off";
+echo -e "   -s : build server only";
+echo -e "   -c : build client only";
 
 client=0
 server=0
