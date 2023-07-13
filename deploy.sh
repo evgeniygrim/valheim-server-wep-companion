@@ -48,7 +48,7 @@ then
   echo -e "$Color_Off";
   echo -e "$Yellow client path is: $Color_Off $PWD"
   echo -e "$Color_Off";
-  echo -e "$Yellow========= [ install node_modules ] =========$Color_Off";
+  echo -e "$Yellow========= [ Install Node_Modules ] =========$Color_Off";
   npm ci
   echo -e "$Color_Off";
   echo -e "$Yellow============= [ Build client ] =============$Color_Off";
@@ -66,7 +66,7 @@ then
   echo -e "$Color_Off";
   echo -e "$Yellow server path is: $Color_Off $PWD"
   echo -e "$Color_Off";
-  echo -e "$Yellow========= [ install node_modules ] =========$Color_Off";
+  echo -e "$Yellow========= [ Install Node_Modules ] =========$Color_Off";
   npm ci
   echo -e "$Color_Off";
   echo -e "$Yellow============= [ Build server ] =============$Color_Off";
