@@ -1,14 +1,15 @@
 ### Dependencies
 - linux (deb)
-- docker compose
-- nodejs
-- mono-utils_4.2.1
+- [Docker compose](https://www.docker.com/)
+- [mono-utils](https://manpages.ubuntu.com/manpages/xenial/man1/monodis.1.html)
+- [NodeJS](https://nodejs.org/)
+- [pm2](https://www.npmjs.com/package/pm2)
 
 ### Description
 Web application for monitoring the state of private Valheim server.
 
 #### Docker Image for Valheim Server
-https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
+[ghcr.io/lloesche/valheim-server](https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server)
 
 Installation:
 
@@ -28,7 +29,7 @@ application will be deployed on port 80.
 Веб-приложение для мониторинга состояния персонального сервера Valheim.
 
 #### Образ docker для Valheim Server
-https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server
+[ghcr.io/lloesche/valheim-server](https://github.com/lloesche/valheim-server-docker/pkgs/container/valheim-server)
 Установка:
 
 ```bash.
